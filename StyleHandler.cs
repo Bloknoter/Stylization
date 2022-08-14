@@ -1,28 +1,27 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace Stylization
 {
-    [ExecuteAlways]
-    public abstract class StyleHandler : MonoBehaviour, IStyleListener
+    public abstract class StyleHandler<T> : MonoBehaviour where T : Style
     {
         [SerializeField]
-        protected Style style;
+        private T style;
 
-        private void OnEnable()
+        public T Style { get { return style; } }
+
+        public bool UpdateComponents()
         {
-            if (style != null)
-                style.AddListener(this);
+            return UpdateComponents(true);
         }
 
-        private void OnDestroy()
+        public bool TryUpdateComponents()
         {
-            if (style != null)
-                style.RemoveListener(this);
+            return UpdateComponents(false);
         }
 
-        public abstract void OnStyleHasChanged();
+        protected abstract bool UpdateComponents(bool debug);
     }
 }
