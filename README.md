@@ -5,10 +5,10 @@ style will update itself. It's really usefull if you have a giant amount of GUI 
 and sliders  because designers thought  that "it would look in another way"))) 
 
 Supported types:
-Button
-Image
-Text (Legacy and TextMeshPro)
-Slider
-Toggle
+Button,
+Image,
+Text (Legacy and TextMeshPro),
+Slider,
+Toggle,
 
 New types and features will be soon...
