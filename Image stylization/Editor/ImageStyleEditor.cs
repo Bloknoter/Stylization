@@ -10,27 +10,25 @@ namespace Stylization
     [CustomEditor(typeof(ImageStyle))]
     public class ImageStyleEditor : StyleEditor<ImageStyle, ImageStyleHandler>
     {
-        private SerializedProperty sprite;
-
-        private SerializedProperty material;
-
-        private SerializedProperty color;
-
-        private SerializedProperty maskable;
+        private ImagePropsSet props;
 
         protected override void Init()
         {
-            sprite = serializedObject.FindProperty("sprite");
-            material = serializedObject.FindProperty("material");
-            color = serializedObject.FindProperty("color");
-            maskable = serializedObject.FindProperty("maskable");
+            props = new ImagePropsSet();
+
+            props.spritePropName = "sprite";
+            props.materialPropName = "material";
+            props.colorPropName = "color";
+            props.maskablePropName = "maskable";
+
+            FindImageProperties(props);
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
 
-            DrawImageParameters(sprite, material, color, maskable);
+            DrawImageParameters(props);
 
             EditorGUILayout.Separator();
 

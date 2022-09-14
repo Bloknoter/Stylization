@@ -83,14 +83,25 @@ namespace Stylization
 
             if (Style.HasText)
             {
-                if (Style.TextType == ToggleStyle.TextTypes.TextMeshPro)
+                if (Style.TextType == TextTypes.TextMeshPro)
                 {
                     if (text != null)
                     {
-                        if (Style.TextFont != null)
-                            text.font = Style.TextFont;
+                        if (Style.StaticText)
+                            text.text = Style.Text;
                         text.fontSize = Style.FontSize;
                         text.color = Style.Foreground;
+                        text.material = Style.Material;
+                        text.maskable = Style.Maskable;
+                        if (Style.TextFont != null)
+                            text.font = Style.TextFont;
+                        text.fontStyle = Style.FontStyle;
+                        text.characterSpacing = Style.CharacterSpacing;
+                        text.wordSpacing = Style.WordSpacing;
+                        text.lineSpacing = Style.LineSpacing;
+                        text.paragraphSpacing = Style.ParagraphSpacing;
+                        text.horizontalAlignment = Style.HorizontalAlignment;
+                        text.verticalAlignment = Style.VerticalAlignment;
                     }
                     else
                     {
@@ -101,14 +112,22 @@ namespace Stylization
                         }
                     }
                 }
-                else if (Style.TextType == ToggleStyle.TextTypes.Legacy)
+                else if (Style.TextType == TextTypes.Legacy)
                 {
                     if (legacyText != null)
                     {
-                        if (Style.LegacyTextFont != null)
-                            legacyText.font = Style.LegacyTextFont;
+                        if (Style.StaticText)
+                            legacyText.text = Style.Text;
                         legacyText.fontSize = (int)Style.FontSize;
                         legacyText.color = Style.Foreground;
+                        legacyText.material = Style.Material;
+                        legacyText.maskable = Style.Maskable;
+                        if (Style.LegacyTextFont != null)
+                            legacyText.font = Style.LegacyTextFont;
+                        legacyText.fontStyle = Style.LegacyFontStyle;
+                        legacyText.lineSpacing = Style.LineSpacing;
+                        legacyText.alignment = Style.LegacyAlignment;
+                        legacyText.alignByGeometry = Style.LegacyAlignByGeometry;
                     }
                     else
                     {
@@ -119,20 +138,30 @@ namespace Stylization
                         }
                     }
                 }
-                else if(Style.TextType == ToggleStyle.TextTypes.Mixed)
+                else if (Style.TextType == TextTypes.Mixed)
                 {
                     bool has = false;
                     if (text != null)
                     {
                         has = true;
+                        if (Style.StaticText)
+                            text.text = Style.Text;
                         text.fontSize = Style.FontSize;
                         text.color = Style.Foreground;
+                        text.material = Style.Material;
+                        text.maskable = Style.Maskable;
+                        text.lineSpacing = Style.LineSpacing;
                     }
                     if (legacyText != null)
                     {
                         has = true;
+                        if (Style.StaticText)
+                            legacyText.text = Style.Text;
                         legacyText.fontSize = (int)Style.FontSize;
                         legacyText.color = Style.Foreground;
+                        legacyText.material = Style.Material;
+                        legacyText.maskable = Style.Maskable;
+                        legacyText.lineSpacing = Style.LineSpacing;
                     }
                     if (!has)
                     {

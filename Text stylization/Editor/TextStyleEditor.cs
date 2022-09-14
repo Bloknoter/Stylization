@@ -101,7 +101,7 @@ namespace Stylization
             EditorGUILayout.Separator();
             EditorGUILayout.Separator();
 
-            if (componentStyle.TextType == TextStyle.TextTypes.TextMeshPro)
+            if (componentStyle.TextType == TextTypes.TextMeshPro)
             {
                 EditorGUILayout.PropertyField(textFont, new GUIContent("Font"));
                 EditorGUILayout.PropertyField(fontStyle, new GUIContent("Text style"));
@@ -109,7 +109,7 @@ namespace Stylization
                 if (textfontsize.floatValue < 0.01f)
                     textfontsize.floatValue = 0.01f;
             }
-            else if (componentStyle.TextType == TextStyle.TextTypes.Legacy)
+            else if (componentStyle.TextType == TextTypes.Legacy)
             {
                 EditorGUILayout.PropertyField(legacyTextFont, new GUIContent("Font"));
                 EditorGUILayout.PropertyField(legacyFontStyle, new GUIContent("Text type"));
@@ -117,7 +117,7 @@ namespace Stylization
                 if (textfontsize.floatValue < 1f)
                     textfontsize.floatValue = 1f;
             }
-            else if (componentStyle.TextType == TextStyle.TextTypes.Mixed)
+            else if (componentStyle.TextType == TextTypes.Mixed)
             {
                 textfontsize.floatValue = EditorGUILayout.IntField("Font size", (int)textfontsize.floatValue);
                 if (textfontsize.floatValue < 1f)
@@ -128,7 +128,7 @@ namespace Stylization
             EditorGUILayout.Separator();
             EditorGUILayout.Separator();
 
-            if (componentStyle.TextType == TextStyle.TextTypes.TextMeshPro)
+            if (componentStyle.TextType == TextTypes.TextMeshPro)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Spacing options", GUILayout.Width(100));
@@ -161,13 +161,13 @@ namespace Stylization
                 EditorGUILayout.PropertyField(horizontalAlignment, new GUIContent("Horizontal alignment"));
                 EditorGUILayout.PropertyField(verticalAlignment, new GUIContent("Vertical alignment"));
             }
-            else if (componentStyle.TextType == TextStyle.TextTypes.Legacy)
+            else if (componentStyle.TextType == TextTypes.Legacy)
             {
                 EditorGUILayout.PropertyField(lineSpacing, new GUIContent("Line spacing"));
                 EditorGUILayout.PropertyField(legacyAlignment, new GUIContent("Alignment"));
                 EditorGUILayout.PropertyField(legacyAlignByGeometry, new GUIContent("Align By Geometry"));
             }
-            else if (componentStyle.TextType == TextStyle.TextTypes.Mixed)
+            else if (componentStyle.TextType == TextTypes.Mixed)
             {
                 EditorGUILayout.PropertyField(lineSpacing, new GUIContent("Line spacing"));
             }
@@ -196,21 +196,21 @@ namespace Stylization
         {
             TextStyle componentStyle = (TextStyle)target;
 
-            if (componentStyle.TextType == TextStyle.TextTypes.TextMeshPro)
+            if (componentStyle.TextType == TextTypes.TextMeshPro)
             {
                 if (componentStyle.TextFont != null)
                     return new ProcessResult(ProcessResult.ResultStatus.Success);
                 else
                     return new ProcessResult(ProcessResult.ResultStatus.Error, "Text font field is not assigned");
             }
-            else if (componentStyle.TextType == TextStyle.TextTypes.Legacy)
+            else if (componentStyle.TextType == TextTypes.Legacy)
             {
                 if (componentStyle.LegacyTextFont != null)
                     return new ProcessResult(ProcessResult.ResultStatus.Success);
                 else
                     return new ProcessResult(ProcessResult.ResultStatus.Error, "Text font field is not assigned");
             }
-            else if (componentStyle.TextType == TextStyle.TextTypes.Mixed)
+            else if (componentStyle.TextType == TextTypes.Mixed)
                 return new ProcessResult(ProcessResult.ResultStatus.Success);
 
             return new ProcessResult(ProcessResult.ResultStatus.Error, "Unknown error. Send message to the developer"); ;

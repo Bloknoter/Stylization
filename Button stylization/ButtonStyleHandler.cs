@@ -55,32 +55,25 @@ namespace Stylization
 
             if (Style.HasText)
             {
-                if(Style.TextType == ButtonStyle.TextTypes.Legacy)
-                {
-                    if (legacyButtonText != null)
-                    {
-                        if (Style.LegacyTextFont != null)
-                            legacyButtonText.font = Style.LegacyTextFont;
-                        legacyButtonText.fontSize = (int)Style.FontSize;
-                        legacyButtonText.color = Style.Foreground;
-                    }
-                    else
-                    {
-                        if (debug)
-                        {
-                            Debug.LogError("Text field is null. Please, assign this field", this);
-                            return false;
-                        }
-                    }
-                }
-                else if(Style.TextType == ButtonStyle.TextTypes.TextMeshPro)
+                if (Style.TextType == TextTypes.TextMeshPro)
                 {
                     if (buttonText != null)
                     {
-                        if (Style.TextFont != null)
-                            buttonText.font = Style.TextFont;
+                        if (Style.StaticText)
+                            buttonText.text = Style.Text;
                         buttonText.fontSize = Style.FontSize;
                         buttonText.color = Style.Foreground;
+                        buttonText.material = Style.Material;
+                        buttonText.maskable = Style.TextMaskable;
+                        if (Style.TextFont != null)
+                            buttonText.font = Style.TextFont;
+                        buttonText.fontStyle = Style.FontStyle;
+                        buttonText.characterSpacing = Style.CharacterSpacing;
+                        buttonText.wordSpacing = Style.WordSpacing;
+                        buttonText.lineSpacing = Style.LineSpacing;
+                        buttonText.paragraphSpacing = Style.ParagraphSpacing;
+                        buttonText.horizontalAlignment = Style.HorizontalAlignment;
+                        buttonText.verticalAlignment = Style.VerticalAlignment;
                     }
                     else
                     {
@@ -91,26 +84,63 @@ namespace Stylization
                         }
                     }
                 }
-                else if(Style.TextType == ButtonStyle.TextTypes.Mixed)
+                else if (Style.TextType == TextTypes.Legacy)
+                {
+                    if (legacyButtonText != null)
+                    {
+                        if (Style.StaticText)
+                            legacyButtonText.text = Style.Text;
+                        legacyButtonText.fontSize = (int)Style.FontSize;
+                        legacyButtonText.color = Style.Foreground;
+                        legacyButtonText.material = Style.Material;
+                        legacyButtonText.maskable = Style.TextMaskable;
+                        if (Style.LegacyTextFont != null)
+                            legacyButtonText.font = Style.LegacyTextFont;
+                        legacyButtonText.fontStyle = Style.LegacyFontStyle;
+                        legacyButtonText.lineSpacing = Style.LineSpacing;
+                        legacyButtonText.alignment = Style.LegacyAlignment;
+                        legacyButtonText.alignByGeometry = Style.LegacyAlignByGeometry;
+                    }
+                    else
+                    {
+                        if (debug)
+                        {
+                            Debug.LogError("Text field is null. Please, assign this field", this);
+                            return false;
+                        }
+                    }
+                }
+                else if (Style.TextType == TextTypes.Mixed)
                 {
                     bool has = false;
-                    if(buttonText != null)
+                    if (buttonText != null)
                     {
                         has = true;
+                        if (Style.StaticText)
+                            buttonText.text = Style.Text;
                         buttonText.fontSize = Style.FontSize;
                         buttonText.color = Style.Foreground;
+                        buttonText.material = Style.Material;
+                        buttonText.maskable = Style.TextMaskable;
+                        buttonText.lineSpacing = Style.LineSpacing;
                     }
                     if (legacyButtonText != null)
                     {
                         has = true;
+                        if (Style.StaticText)
+                            legacyButtonText.text = Style.Text;
                         legacyButtonText.fontSize = (int)Style.FontSize;
                         legacyButtonText.color = Style.Foreground;
+                        legacyButtonText.material = Style.Material;
+                        legacyButtonText.maskable = Style.Maskable;
+                        legacyButtonText.lineSpacing = Style.LineSpacing;
                     }
-                    if(!has)
+                    if (!has)
                     {
                         if (debug)
                         {
                             Debug.LogError("None of Text fields is assigned. Please, assign any of this fields", this);
+                            return false;
                         }
                     }
                 }

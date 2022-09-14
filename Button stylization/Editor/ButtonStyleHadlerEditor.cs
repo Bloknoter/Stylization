@@ -50,11 +50,11 @@ namespace Stylization
                 EditorGUILayout.ObjectField(buttonBG, new GUIContent("Background"));
                 if (buttonStyle.HasText)
                 {
-                    if (buttonStyle.TextType == ButtonStyle.TextTypes.TextMeshPro)
+                    if (buttonStyle.TextType == TextTypes.TextMeshPro)
                         EditorGUILayout.ObjectField(buttonText, new GUIContent("Text"));
-                    else if(buttonStyle.TextType == ButtonStyle.TextTypes.Legacy)
+                    else if(buttonStyle.TextType == TextTypes.Legacy)
                         EditorGUILayout.ObjectField(legacyButtonText, new GUIContent("Text"));
-                    else if (buttonStyle.TextType == ButtonStyle.TextTypes.Mixed)
+                    else if (buttonStyle.TextType == TextTypes.Mixed)
                     {
                         EditorGUILayout.Separator();
                         EditorGUILayout.LabelField("Assign one of this fields:");

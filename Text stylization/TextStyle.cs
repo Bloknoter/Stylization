@@ -19,12 +19,6 @@ namespace Stylization
         private string text = "";
         public string Text { get { return text; } }
 
-        public enum TextTypes
-        {
-            TextMeshPro,
-            Legacy,
-            Mixed
-        }
 
         [SerializeField]
         private TextTypes textType = TextTypes.TextMeshPro;

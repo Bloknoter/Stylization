@@ -10,62 +10,56 @@ namespace Stylization
     [CustomEditor(typeof(SliderStyle))]
     public class SliderStyleEditor : StyleEditor<SliderStyle, SliderStyleHandler>
     {
-        private SerializedProperty bgSprite;
+        private ImagePropsSet bgProps;
 
-        private SerializedProperty bgMaterial;
-
-        private SerializedProperty bgColor;
-
-        private SerializedProperty bgMaskable;
-
-
-        private SerializedProperty fillSprite;
-
-        private SerializedProperty fillMaterial;
-
-        private SerializedProperty fillColor;
-
-        private SerializedProperty fillMaskable;
-
+        private ImagePropsSet fillProps;
 
         private SerializedProperty hasHandle;
 
-        private SerializedProperty handleSprite;
-
-        private SerializedProperty handleMaterial;
-
-        private SerializedProperty handleColor;
-
-        private SerializedProperty handleMaskable;
+        private ImagePropsSet handleProps;
 
         protected override void Init()
         {
-            bgSprite = serializedObject.FindProperty("bgSprite");
-            bgMaterial = serializedObject.FindProperty("bgMaterial");
-            bgColor = serializedObject.FindProperty("bgColor");
-            bgMaskable = serializedObject.FindProperty("bgMaskable");
+            bgProps = new ImagePropsSet();
 
-            fillSprite = serializedObject.FindProperty("fillSprite");
-            fillMaterial = serializedObject.FindProperty("fillMaterial");
-            fillColor = serializedObject.FindProperty("fillColor");
-            fillMaskable = serializedObject.FindProperty("fillMaskable");
+            bgProps.spritePropName = "bgSprite";
+            bgProps.materialPropName = "bgMaterial";
+            bgProps.colorPropName = "bgColor";
+            bgProps.maskablePropName = "bgMaskable";
+
+            FindImageProperties(bgProps);
+
+
+            fillProps = new ImagePropsSet();
+
+            fillProps.spritePropName = "fillSprite";
+            fillProps.materialPropName = "fillMaterial";
+            fillProps.colorPropName = "fillColor";
+            fillProps.maskablePropName = "fillMaskable";
+
+            FindImageProperties(fillProps);
+
 
             hasHandle = serializedObject.FindProperty("hasHandle");
-            handleSprite = serializedObject.FindProperty("handleSprite");
-            handleMaterial = serializedObject.FindProperty("handleMaterial");
-            handleColor = serializedObject.FindProperty("handleColor");
-            handleMaskable = serializedObject.FindProperty("handleMaskable");
+            handleProps = new ImagePropsSet();
+
+            handleProps.spritePropName = "handleSprite";
+            handleProps.materialPropName = "handleMaterial";
+            handleProps.colorPropName = "handleColor";
+            handleProps.maskablePropName = "handleMaskable";
+
+            FindImageProperties(handleProps);
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
 
-            DrawImageParameters("Background", bgSprite, bgMaterial, bgColor, bgMaskable);
+            DrawImageParameters("Background", bgProps);
 
             EditorGUILayout.Separator();
 
-            DrawImageParameters("Fill", fillSprite, fillMaterial, fillColor, fillMaskable);
+            DrawImageParameters("Fill", fillProps);
 
             EditorGUILayout.Separator();
 
@@ -80,7 +74,7 @@ namespace Stylization
             {
                 EditorGUILayout.Separator();
 
-                DrawImageParameters(handleSprite, handleMaterial, handleColor, handleMaskable);
+                DrawImageParameters(handleProps);
             }
 
             EditorGUI.indentLevel--;

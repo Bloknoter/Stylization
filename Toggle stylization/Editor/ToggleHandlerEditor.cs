@@ -53,11 +53,11 @@ namespace Stylization
                 EditorGUILayout.ObjectField(checkmark, new GUIContent("Checkmark"));
                 if (componentStyle.HasText)
                 {
-                    if (componentStyle.TextType == ToggleStyle.TextTypes.TextMeshPro)
+                    if (componentStyle.TextType == TextTypes.TextMeshPro)
                         EditorGUILayout.ObjectField(text, new GUIContent("Text"));
-                    else if (componentStyle.TextType == ToggleStyle.TextTypes.Legacy)
+                    else if (componentStyle.TextType == TextTypes.Legacy)
                         EditorGUILayout.ObjectField(legacyText, new GUIContent("Text"));
-                    else if(componentStyle.TextType == ToggleStyle.TextTypes.Mixed)
+                    else if(componentStyle.TextType == TextTypes.Mixed)
                     {
                         EditorGUILayout.Separator();
                         EditorGUILayout.LabelField("Assign one of this fields:");

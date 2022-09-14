@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Stylization
 {
@@ -36,44 +37,107 @@ namespace Stylization
         // Text
 
         [SerializeField]
-        private bool hasText;
+        private bool hasText = true;
 
         public bool HasText { get { return hasText; } }
 
-        public enum TextTypes
-        {
-            TextMeshPro,
-            Legacy,
-            Mixed
-        }
+        // General
+
+        [SerializeField]
+        private bool staticText;
+        public bool StaticText { get { return staticText; } }
+
+        [SerializeField]
+        [TextArea]
+        private string text = "";
+        public string Text { get { return text; } }
+
 
         [SerializeField]
         private TextTypes textType = TextTypes.TextMeshPro;
-
         public TextTypes TextType { get { return textType; } }
 
 
         [SerializeField]
         private float textfontsize = 30;
-
         public float FontSize { get { return textfontsize; } }
 
 
         [SerializeField]
         private Color foreground = Color.white;
-
         public Color Foreground { get { return foreground; } }
 
 
         [SerializeField]
-        private TMPro.TMP_FontAsset textFont;
+        private Material material;
+        public Material Material { get { return material; } }
 
-        public TMPro.TMP_FontAsset TextFont { get { return textFont; } }
+
+        [SerializeField]
+        private bool textMaskable = true;
+        public bool TextMaskable { get { return textMaskable; } }
+
+
+        [SerializeField]
+        private float lineSpacing;
+        public float LineSpacing { get { return lineSpacing; } }
+
+        // TextMeshPro
+
+        [SerializeField]
+        private TMP_FontAsset textFont;
+        public TMP_FontAsset TextFont { get { return textFont; } }
+
+
+        [SerializeField]
+        private FontStyles fontStyle = FontStyles.Normal;
+        public FontStyles FontStyle { get { return fontStyle; } }
+
+
+        [SerializeField]
+        private float characterSpacing;
+        public float CharacterSpacing { get { return characterSpacing; } }
+
+
+        [SerializeField]
+        private float wordSpacing;
+        public float WordSpacing { get { return wordSpacing; } }
+
+
+        [SerializeField]
+        private float paragraphSpacing;
+        public float ParagraphSpacing { get { return paragraphSpacing; } }
+
+
+        [SerializeField]
+        private HorizontalAlignmentOptions horizontalAlignment = HorizontalAlignmentOptions.Center;
+        public HorizontalAlignmentOptions HorizontalAlignment { get { return horizontalAlignment; } }
+
+
+        [SerializeField]
+        private VerticalAlignmentOptions verticalAlignment = VerticalAlignmentOptions.Middle;
+        public VerticalAlignmentOptions VerticalAlignment { get { return verticalAlignment; } }
+
+        // Legacy text
 
         [SerializeField]
         private Font legacyTextFont;
-
         public Font LegacyTextFont { get { return legacyTextFont; } }
+
+
+        [SerializeField]
+        private FontStyle legacyFontStyle = UnityEngine.FontStyle.Normal;
+        public FontStyle LegacyFontStyle { get { return legacyFontStyle; } }
+
+
+        [SerializeField]
+        private TextAnchor legacyAlignment = TextAnchor.MiddleCenter;
+        public TextAnchor LegacyAlignment { get { return legacyAlignment; } }
+
+
+        [SerializeField]
+        private bool legacyAlignByGeometry;
+        public bool LegacyAlignByGeometry { get { return legacyAlignByGeometry; } }
 
     }
 

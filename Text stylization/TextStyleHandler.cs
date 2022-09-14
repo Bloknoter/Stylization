@@ -28,7 +28,7 @@ namespace Stylization
 
         protected override bool UpdateComponents(bool debug)
         {
-            if (Style.TextType == TextStyle.TextTypes.TextMeshPro)
+            if (Style.TextType == TextTypes.TextMeshPro)
             {
                 if (text != null)
                 {
@@ -57,7 +57,7 @@ namespace Stylization
                     }
                 }
             }
-            else if (Style.TextType == TextStyle.TextTypes.Legacy)
+            else if (Style.TextType == TextTypes.Legacy)
             {
                 if (legacyText != null)
                 {
@@ -83,7 +83,7 @@ namespace Stylization
                     }
                 }
             }
-            else if(Style.TextType == TextStyle.TextTypes.Mixed)
+            else if(Style.TextType == TextTypes.Mixed)
             {
                 bool has = false;
                 if (text != null)
